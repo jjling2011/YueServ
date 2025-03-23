@@ -9,7 +9,7 @@
 设置好端口启动后点“访问”调出浏览器。目前只有 edge 浏览器支持线控。  
 如果手机里的歌曲没出现在库里面，点下“刷新音乐库”。  
 
-![player.png](./docs/Screenshot.png)  
+<img src="./docs/Screenshot.png" alt="screenshot.png" style="max-width: 20rem;"/>  
 
 ### 更新日志
 [update.md](./docs/update.md)  
