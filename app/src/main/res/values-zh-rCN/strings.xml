@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">乐符</string>
+    <string name="this_app_require_permits">这个软件需要读取媒体权限才能运行。</string>
+    <string name="port">端口</string>
+    <string name="start">启动</string>
+    <string name="stop">停止</string>
+    <string name="http_port">HTTP监听端口</string>
+    <string name="invalid_port">无效的端口号</string>
+    <string name="http_server_starts">HTTP服务器已启动</string>
+    <string name="visit">访问</string>
+    <string name="no_browser_available">没有可用的浏览器</string>
+    <string name="img_desc">一个带着耳机的小孩</string>
+    <string name="auto_start">自动启动</string>
+    <string name="refresh_music_db">刷新音乐库</string>
+    <string name="scan_success">扫描成功：</string>
+    <string name="scan_failed">扫描失败：</string>
+    <string name="http_server">HTTP服务器</string>
+    <string name="http_server_running">HTTP服务器运行中</string>
+    <string name="serving_content_on_port">服务端口：</string>
+</resources>

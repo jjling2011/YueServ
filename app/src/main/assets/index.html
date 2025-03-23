@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>简单音乐播放器</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Ctext%20x='-2'%20y='15.5'%3E🎵%3C/text%3E%3C/svg%3E"
+            type="image/svg+xml"
+        />
+      <script type="module" crossorigin src="./res/js/index-DI29YF1O.js"></script>
+      <link rel="stylesheet" crossorigin href="./res/css/indexBFkpKvhX.css">
+      <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+      <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+    </head>
+    <body>
+        <h3 id="audio-title" class="box">简单音乐播放器</h3>
+        <div class="box audio-wrapper">
+            <div class="audio-control-container">
+                <audio id="audio">
+                    <source id="audio-source" src="" />
+                    你的浏览器不支持音乐播放功能
+                </audio>
+                <button id="audio-play-mode" title="顺序、随机播放">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+                <div id="audio-progress-wrapper">
+                    <div class="audio-progress-line">&nbsp;</div>
+                    <div
+                        id="audio-progress-container"
+                        class="audio-progress-line"
+                    >
+                        <div id="audio-progress-buff">
+                            <div id="audio-progress-bar"></div>
+                        </div>
+                    </div>
+                    <span id="audio-timestamp" class="audio-progress-line"
+                        >0:00 / 0:00</span
+                    >
+                </div>
+                <button id="audio-prev-track" title="播放上一首音乐">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button id="audio-start-pause" title="播放、暂停">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="audio-next-track" title="播放下一首音乐">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box pages-header-wrapper">
+            <div class="pages-header">
+                <button id="pages-btn-lib">库</button>
+                <button id="pages-btn-playlist" class="active">列表</button>
+                <button id="pages-btn-dirlist">目录</button>
+                <button id="pages-btn-about">关于</button>
+            </div>
+            <span id="utils-status"></span>
+        </div>
+        <div id="pages-div-lib" class="box pages-div">
+            <div class="box" id="search-bar">
+                <button id="lib-clear" title="清空搜索关键词">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+                <input
+                    type="text"
+                    id="lib-search-box"
+                    placeholder="搜索歌名..."
+                />
+                <button id="lib-update-db" title="更新数据库">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                </button>
+            </div>
+            <div class="box wrap">
+                <button
+                    id="lib-add-cur-page-to-playlist"
+                    title="把本页的音乐添加到列表"
+                >
+                    添加本页
+                </button>
+                <button
+                    id="lib-add-result-to-playlist"
+                    title="把全部搜索结果添加到列表"
+                >
+                    添加匹配
+                </button>
+                <span class="span-total" id="lib-total"></span>
+            </div>
+            <div class="box wrap main-content">
+                <ul id="lib-music-list"></ul>
+            </div>
+            <div class="box hcenter">
+                <div class="pager wrap" id="lib-pager-container"></div>
+            </div>
+        </div>
+        <div id="pages-div-playlist" class="box pages-div active">
+            <div class="box wrap custom-playlist-controls">
+                <button id="playlist-sort-btn">顺序</button>
+                <button id="playlist-reverse-btn">逆序</button>
+                <button id="playlist-shuffle-btn">随机</button>
+                <button id="playlist-clear-btn">清空</button>
+                <span class="span-total" id="playlist-total"></span>
+            </div>
+            <div class="box wrap custom-playlist-controls">
+                <button id="playlist-add-new-custom-playlist">新建</button>
+                <button id="playlist-replace-custom-playlist">替换</button>
+                <button id="playlist-load-custom-playlist">加载</button>
+                <button id="playlist-remove-custom-playlist">删除</button>
+                <span class="span-total" id="custom-playlist-total"></span>
+            </div>
+            <div class="box wrap main-content">
+                <ul id="playlist-music-list"></ul>
+            </div>
+            <div class="box hcenter">
+                <div class="pager wrap" id="playlist-pager-container"></div>
+            </div>
+        </div>
+        <div id="pages-div-dirlist" class="box pages-div">
+            <div class="box wrap">
+                <div class="wrap" id="dirlist-nav-bar"></div>
+                <span class="span-total" id="dirlist-total"></span>
+                <button id="dirlist-clear-btn" title="清空当前列表">
+                    清空
+                </button>
+            </div>
+            <div class="box wrap main-content">
+                <ul id="dirlist-dirs"></ul>
+            </div>
+        </div>
+        <div id="pages-div-about" class="box pages-div">
+            <div class="box wrap">
+                <span>
+                    <b>使用说明</b><br />
+                    首次使用时会自动从“serv.php”读取数据到“库”中。
+                    然后通过搜索文件名，或者在“目录”中点选文件夹，把音乐添加到“列表”。
+                    播放器会循环播放“列表”里面的音乐。
+                    点击列表里面的“新建”按钮，可以把当前列表保存成“歌单”。
+                    “列表”的第一行按钮操作音乐，第二行按钮操作歌单。
+                    在“库”里面点播放按钮时，音乐不会添加到“列表”。
+                    在“目录”里面点播放按钮时，会用该目录内的音乐覆盖当前“列表”。<br />
+                    <br />
+                    <b>项目信息</b><br />
+                    <a
+                        style="word-break: break-all"
+                        href="https://github.com/jjling2011/SimpleWebMusicPlayer/"
+                        target="_blank"
+                        >https://github.com/jjling2011/SimpleWebMusicPlayer/</a
+                    >
+                </span>
+            </div>
+        </div>
+        <footer class="box">
+            <span>by jjling 2025</span>
+        </footer>
+      <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+      <script nomodule crossorigin id="vite-legacy-polyfill" src="./res/js/polyfills-legacy-CPPzhHxT.js"></script>
+      <script nomodule crossorigin id="vite-legacy-entry" data-src="./res/js/index-legacy-s0WHDxX6.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+    </body>
+    <div id="dialog-prompt">
+        <div id="dialog-prompt-window">
+            <pre class="box" id="dialog-prompt-title"></pre>
+            <div class="box">
+                <input type="text" id="dialog-prompt-content" />
+            </div>
+            <div class="box">
+                <button id="dialog-prompt-ok">确定</button>
+                <button id="dialog-prompt-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-confirm">
+        <div id="dialog-confirm-window">
+            <pre class="box" id="dialog-confirm-content"></pre>
+            <div class="box">
+                <button id="dialog-confirm-ok">确定</button>
+                <button id="dialog-confirm-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-alert">
+        <div id="dialog-alert-window">
+            <pre class="box" id="dialog-alert-content"></pre>
+            <div class="box">
+                <button id="dialog-alert-ok">确定</button>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-loading">
+        <div id="dialog-loading-window">
+            <pre class="box" id="dialog-loading-content"></pre>
+            <div class="box">
+                <img
+                    src="./res/img/3-dots-bounce.svg"
+                    alt="3-dots-bounce.svg"
+                />
+            </div>
+        </div>
+    </div>
+    <div id="dialog-select">
+        <div id="dialog-select-window">
+            <pre class="box" id="dialog-select-title"></pre>
+            <select class="box" id="dialog-select-content"></select>
+            <div class="box">
+                <button id="dialog-select-ok">确定</button>
+                <button id="dialog-select-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+</html>

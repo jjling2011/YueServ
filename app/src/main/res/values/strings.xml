@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Yue Serv</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="this_app_require_permits">This app requires read access to storages.</string>
+    <string name="port">Port</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="http_port">HTTP server port</string>
+    <string name="invalid_port">Invalid port number.</string>
+    <string name="http_server_starts">HTTP server starts.</string>
+    <string name="visit">Visit</string>
+    <string name="no_browser_available">No browser available</string>
+    <string name="img_desc">A kid wearing a headset.</string>
+    <string name="auto_start">Auto start</string>
+    <string name="refresh_music_db">Refresh DB</string>
+    <string name="scan_success">Scan success:</string>
+    <string name="scan_failed">Scan failed:</string>
+    <string name="http_server">HTTP server</string>
+    <string name="http_server_running">HTTP server running</string>
+    <string name="serving_content_on_port">"Serving content on port "</string>
+</resources>
