@@ -98,23 +98,39 @@ class MainActivity : AppCompatActivity() {
     private fun initUpdateMusicDbButton() {
         val that = this
         val buttonRefresh = findViewById<Button>(R.id.buttonRefresh)
-        buttonRefresh.setOnClickListener {
-            fun scanPath(dir: String) {
-                Log.d(TAG, "scan dir: $dir")
-                MediaScannerConnection.scanFile(
-                    that, arrayOf(dir), arrayOf("audio/*")
-                ) { path, uri ->
-                    var msg = "${getString(R.string.scan_failed)}$path"
-                    if (uri != null) {
-                        msg = "${getString(R.string.scan_success)}$path"
-                    }
-                    Log.d(TAG, msg)
-                    alert(msg)
-                }
-            }
+        var countDown = 0 // buggy!
 
+        fun tryEnableRefreshButton(){
+            countDown --
+            if(countDown > 0){
+                return
+            }
+            that.runOnUiThread {
+                buttonRefresh.isEnabled = true
+            }
+        }
+
+        fun scanPath(dir: String) {
+            Log.d(TAG, "scan dir: $dir")
+            MediaScannerConnection.scanFile(
+                that, arrayOf(dir), arrayOf("audio/*")
+            ) { path, uri ->
+                tryEnableRefreshButton()
+                var msg = "${getString(R.string.scan_failed)}$path"
+                if (uri != null) {
+                    msg = "${getString(R.string.scan_success)}$path"
+                }
+                Log.d(TAG, msg)
+                alert(msg)
+            }
+        }
+
+        buttonRefresh.setOnClickListener {
+            buttonRefresh.isEnabled = false
+            countDown = 0
             val paths = getAllVolumePaths()
             for (path in paths) {
+                countDown ++
                 scanPath(path)
             }
         }
