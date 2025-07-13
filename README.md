@@ -11,5 +11,14 @@
 
 <img src="./docs/Screenshot.png" alt="screenshot.png" width="300"/>  
 
+### Build
+```bash
+gradlew build -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8080 -U --no-build-cache --no-daemon --parallel
+
+# assets location:
+# ./app/build/outputs/apk/debug/
+# release 没有签名，无法安装
+```
+
 ### 更新日志
 [update.md](./docs/update.md)  
