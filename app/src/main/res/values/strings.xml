@@ -18,5 +18,5 @@
     <string name="http_server">HTTP server</string>
     <string name="http_server_running">HTTP server running</string>
     <string name="serving_content_on_port">"Serving content on port "</string>
-    <string name="app_version" translatable="false">v1.0.1.6</string>
+    <string name="app_version" translatable="false">v1.0.2</string>
 </resources>
